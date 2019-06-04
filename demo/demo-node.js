@@ -1,2 +1,2 @@
-var base = require('../dist/index.js');
-console.log(base.name);
+var utils = require('../dist/index.js');
+console.log(utils.name);

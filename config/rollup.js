@@ -3,19 +3,18 @@ var babel = require('rollup-plugin-babel');
 
 var pkg = require('../package.json');
 
-// compatible with jslib-base and @yanhaijing/jslib-base
-// @yanhaijing/jslib-base -> jslib-base
+// compatible with utils and @cyb/utils
+// @cyb/utils -> utils
 var name = pkg.name.split('/').pop();
-// @yanhaijing/jslib-base -> yanhaijing_jslib-base
-// var name = pkg.name.replace('@', '').replace(/\//g, '_');
 var version = pkg.version;
+var date = (new Date).getFullYear();
 
 var banner = 
 `/*!
- * ${pkg.name} ${version} (https://github.com/yanhaijing/jslib-base)
- * API https://github.com/yanhaijing/jslib-base/blob/master/doc/api.md
- * Copyright 2017-${(new Date).getFullYear()} yanhaijing. All Rights Reserved
- * Licensed under MIT (https://github.com/yanhaijing/jslib-base/blob/master/LICENSE)
+ * ${pkg.name} ${version} (https://github.com/Azath0th/utils)
+ * API https://github.com/Azath0th/utils/blob/master/doc/api.md
+ * Copyright ${date === 2019 ? date : `2019 - ${date}`} Chen YuBen. All Rights Reserved
+ * Licensed under MIT (https://github.com/Azath0th/utils/blob/master/LICENSE)
  */
 `;
 
@@ -30,8 +29,8 @@ function getCompiler(opt) {
                     '@babel/preset-env',
                     {
                         'targets': {
-                          'browsers': 'last 2 versions, > 1%, ie >= 6, Android >= 4, iOS >= 6, and_uc > 9',
-                          'node': '0.10'
+                            'browsers': 'last 2 versions, > 1%, ie >= 6, Android >= 4, iOS >= 6, and_uc > 9',
+                            'node': '0.10'
                         },
                         'modules': false,
                         'loose': false
@@ -54,7 +53,7 @@ function getCompiler(opt) {
 
     opt = opt || {
         tsconfigOverride: { compilerOptions : { module: 'ES2015' } }
-    }
+    };
 
     return typescript(opt);
 }
